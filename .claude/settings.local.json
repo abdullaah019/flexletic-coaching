@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/YINC_Admin/OneDrive/Desktop/**)",
+      "Read(//c/Users/YINC_Admin/Downloads/**)",
+      "Bash(awk '{print $5, $9}')"
+    ]
+  }
+}

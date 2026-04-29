@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flexletic | 3-Day Muscle Blueprint</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <style>
+  /* ═══════════════════════════════════════════════
+     RESET & TOKENS
+  ═══════════════════════════════════════════════ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #111111;
+    --bg2:      #1a1a1a;
+    --bg3:      #222222;
+    --accent:   #ff6600;
+    --text:     #e0e0e0;
+    --muted:    #888888;
+    --border:   rgba(255,102,0,0.12);
+    --border-h: rgba(255,102,0,0.45);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  section { padding: 6rem 0; }
+
+  /* ═══════════════════════════════════════════════
+     SCROLL FADE-IN
+  ═══════════════════════════════════════════════ */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* ═══════════════════════════════════════════════
+     SECTION HEADER — / label ─────────────
+  ═══════════════════════════════════════════════ */
+  .sh {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 3.5rem;
+  }
+  .sh-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .sh-label .sl { color: var(--accent); }
+  .sh-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,102,0,0.28), transparent 80%);
+  }
+
+  /* ═══════════════════════════════════════════════
+     BUTTONS
+  ═══════════════════════════════════════════════ */
+  .btn {
+    display: inline-block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    padding: 0.65rem 1.5rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    line-height: 1;
+  }
+  .btn-filled {
+    background: var(--accent);
+    color: #111;
+    border-color: var(--accent);
+  }
+  .btn-filled:hover {
+    background: #e55a00;
+    border-color: #e55a00;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255,102,0,0.3);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border-color: rgba(255,102,0,0.45);
+  }
+  .btn-outline:hover {
+    border-color: var(--accent);
+    background: rgba(255,102,0,0.06);
+    transform: translateY(-2px);
+  }
+
+  /* ═══════════════════════════════════════════════
+     CARD BASE
+  ═══════════════════════════════════════════════ */
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.25s;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .card:hover { border-color: var(--border-h); transform: translateY(-3px); }
+  .card:hover::after { transform: scaleX(1); }
+
+  /* ═══════════════════════════════════════════════
+     NAV
+  ═══════════════════════════════════════════════ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(17,17,17,0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,102,0,0.07);
+    transition: background 0.3s;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo { display: flex; align-items: center; }
+
+  /* ── image protection ── */
+  img {
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: none;
+  }
+  .img-protect {
+    position: relative;
+    overflow: hidden;
+  }
+  .img-protect-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+  }
+  /* re-enable pointer events on nav/footer logo links */
+  .nav-logo img, .footer-logo img { pointer-events: auto; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
+
+  /* hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    width: 34px; height: 34px;
+  }
+  .hamburger span {
+    display: block;
+    width: 20px; height: 1.5px;
+    background: var(--text);
+    transition: all 0.28s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 0.8rem 1.5rem 1.4rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(255,102,0,0.06);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:last-of-type { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--accent); }
+  .mobile-menu .btn { margin-top: 1rem; text-align: center; }
+
+  /* ═══════════════════════════════════════════════
+     HERO
+  ═══════════════════════════════════════════════ */
+  #hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 60px;
+    background-image: url('hero.jpg');
+    background-size: cover;
+    background-position: center 20%;
+    background-repeat: no-repeat;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 0;
+  }
+  /* left-side vignette so text is always crisp */
+  .hero-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba(17,17,17,0.65) 0%,
+      rgba(17,17,17,0.15) 55%,
+      rgba(17,17,17,0.35) 100%
+    );
+  }
+
+  .hero-grid {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: calc(100vh - 60px);
+  }
+
+  .hero-location {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-headline {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+  .hero-headline .hl { color: var(--accent); }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    color: rgba(224,224,224,0.72);
+    line-height: 1.85;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2.2rem;
+  }
+
+  .hero-btns { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+
+  /* terminal card */
+  .hero-terminal {
+    background: rgba(26,26,26,0.88);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .t-bar {
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border);
+    padding: 0.55rem 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+  .t-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .t-dot.r { background: #ff5f56; }
+  .t-dot.y { background: #ffbd2e; }
+  .t-dot.g { background: #27c93f; }
+  .t-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-left: 0.4rem;
+  }
+  .t-body {
+    padding: 1.4rem 1.6rem 1.6rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.95;
+  }
+  .t-line { color: var(--text); display: flex; gap: 0.5rem; }
+  .t-line .pr { color: var(--accent); flex-shrink: 0; }
+  .t-line.dim { color: var(--muted); }
+  .t-line .k { color: var(--accent); min-width: 130px; display: inline-block; }
+  .t-line .v { color: #7ab8f5; }
+  .t-line .v.warn { color: var(--accent); }
+  .t-cursor {
+    display: inline-block;
+    width: 7px; height: 0.9em;
+    background: var(--accent);
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* ═══════════════════════════════════════════════
+     TRANSFORMATIONS
+  ═══════════════════════════════════════════════ */
+  #transformations { background: var(--bg2); padding-bottom: 5rem; }
+
+  .carousel-track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .carousel-track::-webkit-scrollbar { display: none; }
+
+  .t-item {
+    flex: 0 0 230px;
+    aspect-ratio: 2/3;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    position: relative;
+    transition: border-color 0.3s;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .t-item:hover { border-color: var(--border-h); }
+  .t-item::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s;
+  }
+  .t-item:hover::after { transform: scaleX(1); }
+  .t-item-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    position: absolute;
+    bottom: 0.7rem;
+    left: 0; right: 0;
+    text-align: center;
+    padding: 0 0.5rem;
+  }
+  .t-item-icon {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.8rem;
+    color: rgba(255,102,0,0.18);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .carousel-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.2rem;
+  }
+  .carousel-note {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+  .carousel-controls { display: flex; gap: 0.6rem; }
+  .c-btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    width: 38px; height: 38px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .c-btn:hover { border-color: var(--accent); background: rgba(255,102,0,0.06); }
+
+  /* ═══════════════════════════════════════════════
+     HOW IT WORKS
+  ═══════════════════════════════════════════════ */
+  #how { background: var(--bg); }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .step-num {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    margin-bottom: 1rem;
+  }
+  .step-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.96rem;
+    color: var(--text);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .step-desc {
+    font-size: 0.87rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* ═══════════════════════════════════════════════
+     ABOUT ME
+  ═══════════════════════════════════════════════ */
+  #about { background: var(--bg2); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-name {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.35rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+  .about-name .ao { color: var(--accent); }
+  .about-role {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    margin-bottom: 1.8rem;
+  }
+  .about-bio {
+    font-size: 0.92rem;
+    color: rgba(224,224,224,0.7);
+    line-height: 1.9;
+    margin-bottom: 1.4rem;
+  }
+  .about-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .about-bullets li {
+    font-size: 0.86rem;
+    color: var(--muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    line-height: 1.55;
+  }
+  .about-bullets li::before {
+    content: '▸';
+    color: var(--accent);
+    flex-shrink: 0;
+    font-family: 'Share Tech Mono', monospace;
+    margin-top: 0.02em;
+  }
+
+  /* coach photo oval */
+  .photo-oval {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 3/4;
+    border-radius: 50% 50% 50% 50% / 38% 38% 62% 62%;
+    border: 1px solid var(--border);
+    margin: 0 auto;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .photo-oval:hover { border-color: var(--border-h); }
+
+  /* ═══════════════════════════════════════════════
+     WHAT YOU GET
+  ═══════════════════════════════════════════════ */
+  #features { background: var(--bg); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .feat-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    margin-bottom: 0.75rem;
+  }
+  .feat-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.92rem;
+    color: var(--text);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.65rem;
+    line-height: 1.3;
+  }
+  .feat-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* ═══════════════════════════════════════════════
+     CTA
+  ═══════════════════════════════════════════════ */
+  #cta { background: var(--bg2); }
+
+  .cta-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 4rem 3.5rem;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .cta-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), rgba(255,102,0,0.15) 60%, transparent);
+  }
+  .cta-card::after {
+    content: '';
+    position: absolute;
+    top: -80px; left: -80px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(255,102,0,0.07), transparent 65%);
+    pointer-events: none;
+  }
+
+  .cta-eyebrow {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    margin-bottom: 1rem;
+  }
+  .cta-headline {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+    color: var(--text);
+    line-height: 1.15;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.8rem;
+  }
+  .cta-headline .cao { color: var(--accent); }
+  .cta-sub {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .cta-action { flex-shrink: 0; }
+
+  /* ═══════════════════════════════════════════════
+     FOOTER
+  ═══════════════════════════════════════════════ */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid rgba(255,102,0,0.07);
+    padding: 2.5rem 0 1.8rem;
+  }
+  .footer-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.8rem;
+  }
+  .footer-logo {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.05rem;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+  .footer-logo .dot { color: var(--accent); }
+  .footer-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+  }
+
+  .footer-socials { display: flex; gap: 0.7rem; align-items: center; }
+  .soc-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    border: 1px solid rgba(255,102,0,0.1);
+    padding: 0.45rem 0.85rem;
+    transition: all 0.2s;
+  }
+  .soc-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .soc-btn svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+  .footer-copy {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.68rem;
+    color: rgba(136,136,136,0.38);
+    letter-spacing: 0.08em;
+    border-top: 1px solid rgba(255,102,0,0.05);
+    padding-top: 1.4rem;
+    text-align: center;
+  }
+
+  /* ═══════════════════════════════════════════════
+     ELITE MEMBERSHIP
+  ═══════════════════════════════════════════════ */
+  #elite { background: var(--bg); }
+
+  .elite-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .elite-app-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .elite-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    background: transparent;
+    padding: 0.75rem 0.5rem;
+  }
+  .elite-pill-wrap {
+    width: 100%;
+    text-align: center;
+  }
+  .elite-pill {
+    display: inline-block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.4rem 1rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .elite-img-wrap {
+    width: 100%;
+  }
+  .elite-img-wrap img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 9/16;
+  }
+  .elite-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 2.2rem;
+  }
+
+  /* ═══════════════════════════════════════════════
+     THE APP
+  ═══════════════════════════════════════════════ */
+  #app { background: var(--bg2); }
+
+  .app-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+  .app-hero-headline {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+  .app-hero-headline .hl { color: var(--accent); }
+  .app-hero-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .app-hero-img img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* 4-card grid */
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .app-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.25s;
+  }
+  .app-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .app-card:hover { border-color: var(--border-h); transform: translateY(-3px); }
+  .app-card:hover::after { transform: scaleX(1); }
+  .app-card img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 9/16;
+  }
+  .app-card-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    padding: 0.75rem 1rem 0.9rem;
+  }
+
+  /* ═══════════════════════════════════════════════
+     RESPONSIVE
+  ═══════════════════════════════════════════════ */
+  @media (max-width: 960px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-terminal { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .photo-oval { max-width: 220px; order: -1; }
+    .how-grid { grid-template-columns: 1fr; }
+    .cta-card { grid-template-columns: 1fr; padding: 2.5rem 2rem; }
+    .nav-links, .nav-right .btn { display: none; }
+    .hamburger { display: flex; }
+    .app-grid { grid-template-columns: repeat(2, 1fr); }
+    .elite-app-grid { grid-template-columns: repeat(2, 1fr); }
+    .app-hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .app-hero-img { order: -1; }
+    .app-hero-img img { max-height: 380px; width: auto; margin: 0 auto; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 4rem 0; }
+    .hero-headline { font-size: 2rem; }
+    .hero-btns { flex-direction: column; }
+    .hero-btns .btn { text-align: center; }
+    .features-grid { grid-template-columns: 1fr; }
+    .t-item { flex: 0 0 190px; }
+    .footer-inner { flex-direction: column; }
+    .app-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 420px) {
+    .app-grid { grid-template-columns: 1fr; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <img src="flelxetic_logo.png" alt="Flexletic" style="height:40px;width:auto;display:block;">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about">about</a></li>
+        <li><a href="#how">how it works</a></li>
+        <li><a href="#features">coaching</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <a href="https://forms.gle/7pLi4NcWVoTSpPxNA" target="_blank" rel="noopener" class="btn btn-filled">apply now</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about"           onclick="closeMobile()">about</a>
+    <a href="#how"             onclick="closeMobile()">how it works</a>
+    <a href="#features"        onclick="closeMobile()">coaching</a>
+    <a href="#contact"         onclick="closeMobile()">contact</a>
+    <a href="https://forms.gle/7pLi4NcWVoTSpPxNA" target="_blank" rel="noopener" class="btn btn-filled">apply now</a>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-overlay"></div>
+
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- Left: headline + CTA -->
+      <div class="fade-in">
+        <div class="hero-location">// Phoenix, AZ</div>
+
+        <h1 class="hero-headline">
+          3-DAY<br>
+          MUSCLE<br>
+          <span class="hl">BLUEPRINT</span>
+        </h1>
+
+        <p class="hero-sub">
+          Build muscle, gain strength, and transform your physique
+          without living in the gym. Structured coaching built for
+          busy professionals who want real results.
+        </p>
+
+        <div class="hero-btns">
+          <a href="https://forms.gle/7pLi4NcWVoTSpPxNA" target="_blank" rel="noopener" class="btn btn-filled">apply for coaching</a>
+          <a href="https://forms.gle/7pLi4NcWVoTSpPxNA" target="_blank" rel="noopener" class="btn btn-outline">see results &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     TRANSFORMATIONS
+═══════════════════════════════════════════════════ -->
+<section id="transformations">
+  <div class="container">
+
+    <div class="sh fade-in">
+      <span class="sh-label"><span class="sl">/</span> client results</span>
+      <div class="sh-line"></div>
+    </div>
+
+    <div class="carousel-track fade-in" id="carouselTrack" style="transition-delay:.1s">
+
+      <div class="t-item img-protect">
+        <img src="11.png" alt="Client transformation" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="img-protect-overlay"></div>
+      </div>
+      <div class="t-item img-protect">
+        <img src="12.png" alt="Client transformation" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="img-protect-overlay"></div>
+      </div>
+      <div class="t-item img-protect">
+        <img src="13.png" alt="Client transformation" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="img-protect-overlay"></div>
+      </div>
+      <div class="t-item img-protect">
+        <img src="14.png" alt="Client transformation" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="img-protect-overlay"></div>
+      </div>
+      <div class="t-item img-protect">
+        <img src="15.png" alt="Client transformation" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="img-protect-overlay"></div>
+      </div>
+      <div class="t-item img-protect">
+        <img src="16.png" alt="Client transformation" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="img-protect-overlay"></div>
+      </div>
+      <div class="t-item img-protect">
+        <img src="17.png" alt="Client transformation" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="img-protect-overlay"></div>
+      </div>
+      <div class="t-item img-protect">
+        <img src="18.png" alt="Client transformation" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="img-protect-overlay"></div>
+      </div>
+
+    </div>
+
+    <div class="carousel-foot fade-in" style="transition-delay:.18s">
+      <span class="carousel-note">// real client results</span>
+      <div class="carousel-controls">
+        <button class="c-btn" id="prevBtn" aria-label="Previous">&#8592;</button>
+        <button class="c-btn" id="nextBtn" aria-label="Next">&#8594;</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════════════════ -->
+<section id="how">
+  <div class="container">
+
+    <div class="sh fade-in">
+      <span class="sh-label"><span class="sl">/</span> how it works</span>
+      <div class="sh-line"></div>
+    </div>
+
+    <div class="how-grid">
+
+      <div class="card fade-in">
+        <div class="step-num">// 01</div>
+        <div class="step-title">Apply for Coaching</div>
+        <p class="step-desc">
+          Submit your application and tell us your goals, schedule, and
+          current challenges. The more detail you give, the better we
+          can build your program.
+        </p>
+      </div>
+
+      <div class="card fade-in" style="transition-delay:.12s">
+        <div class="step-num">// 02</div>
+        <div class="step-title">Get Your Custom Plan</div>
+        <p class="step-desc">
+          You receive a personalized training system, nutrition strategy,
+          and full coaching inside the app — built specifically for you,
+          not a template.
+        </p>
+      </div>
+
+      <div class="card fade-in" style="transition-delay:.24s">
+        <div class="step-num">// 03</div>
+        <div class="step-title">Execute With Guidance</div>
+        <p class="step-desc">
+          Weekly check-ins, progress tracking, and adjustments to ensure
+          consistent results. No guessing — just execution with a
+          coach in your corner.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     ABOUT ME
+═══════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+
+    <div class="sh fade-in">
+      <span class="sh-label"><span class="sl">/</span> about me</span>
+      <div class="sh-line"></div>
+    </div>
+
+    <div class="about-grid">
+
+      <!-- Left: text -->
+      <div class="fade-in" style="transition-delay:.08s">
+        <div class="about-name">ABDULLAAH <span class="ao">YASEEN</span></div>
+        <div class="about-role">// fitness coach &amp; founder, flexletic</div>
+
+        <p class="about-bio">
+          I'm a Fitness Coach and former college athlete who knows what it takes
+          to go from skinny and unsure in the gym to building muscle, strength, and
+          confidence that lasts. My mission is to help busy professionals and everyday
+          men cut through the confusion, get in shape, and stay consistent without
+          wasting years guessing what works.
+        </p>
+        <p class="about-bio">
+          With a background in IT and cybersecurity, I understand the demands of
+          long hours behind a desk. That's why my coaching focuses on efficient
+          training, nutrition made simple, and discipline that fits into real life.
+        </p>
+
+        <ul class="about-bullets">
+          <li>Founder of Builtwithseen™</li>
+          <li>Ex-College Football Player — Lake Erie College, Defensive Back</li>
+          <li>10+ Years Training Experience</li>
+          <li>Certified in Nutrition and Personal Training</li>
+          <li>Specialized in Muscle Building &amp; Fat Loss for Busy Professionals</li>
+          <li>Background in Cybersecurity &amp; Tech — I coach from real-life balance</li>
+        </ul>
+      </div>
+
+      <!-- Right: coach photo -->
+      <div class="fade-in" style="transition-delay:.22s">
+        <div class="photo-oval img-protect" style="position:relative;">
+          <img src="coach.jpg" alt="Abdullaah Yaseen — Fitness Coach" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
+          <div class="img-protect-overlay"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     WHAT YOU GET
+═══════════════════════════════════════════════════ -->
+<section id="features">
+  <div class="container">
+
+    <div class="sh fade-in">
+      <span class="sh-label"><span class="sl">/</span> what you get</span>
+      <div class="sh-line"></div>
+    </div>
+
+    <div class="features-grid">
+
+      <div class="card fade-in" style="transition-delay:.05s">
+        <div class="feat-tag">// 01.training</div>
+        <div class="feat-title">Custom Training Plan</div>
+        <p class="feat-desc">
+          A fully tailored training program designed for your goals, fitness
+          level, and available time — whether at home or in the gym.
+        </p>
+      </div>
+
+      <div class="card fade-in" style="transition-delay:.1s">
+        <div class="feat-tag">// 02.nutrition</div>
+        <div class="feat-title">Custom Meal Plan</div>
+        <p class="feat-desc">
+          No more guessing what to eat. Your meal plan is built around your
+          goals, food preferences, and lifestyle so it's easy to stick with.
+        </p>
+      </div>
+
+      <div class="card fade-in" style="transition-delay:.15s">
+        <div class="feat-tag">// 03.coaching</div>
+        <div class="feat-title">1:1 Coaching</div>
+        <p class="feat-desc">
+          Direct access to me and my team for accountability and personalized
+          strategies to overcome challenges and maximize results.
+        </p>
+      </div>
+
+      <div class="card fade-in" style="transition-delay:.2s">
+        <div class="feat-tag">// 04.tracking</div>
+        <div class="feat-title">Check-ins &amp; Adjustments</div>
+        <p class="feat-desc">
+          Your plan evolves as you do. I'll track your progress and make
+          necessary tweaks to keep you moving forward.
+        </p>
+      </div>
+
+      <div class="card fade-in" style="transition-delay:.25s">
+        <div class="feat-tag">// 05.app</div>
+        <div class="feat-title">Training App</div>
+        <p class="feat-desc">
+          Track your workouts, nutrition, and progress all in one place for
+          seamless execution and next-level results.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     ELITE MEMBERSHIP
+═══════════════════════════════════════════════════ -->
+<section id="elite">
+  <div class="container">
+
+    <div class="sh fade-in">
+      <span class="sh-label"><span class="sl">/</span> elite membership</span>
+      <div class="sh-line"></div>
+    </div>
+
+    <div class="elite-inner fade-in" style="transition-delay:.08s">
+
+      <!-- App cards: pill above image, no borders -->
+      <div class="elite-app-grid">
+        <div class="elite-card">
+          <div class="elite-pill-wrap">
+            <span class="elite-pill">WORKOUT</span>
+          </div>
+          <div class="elite-img-wrap">
+            <img src="app-workout.png" alt="Workout tracking" />
+          </div>
+        </div>
+        <div class="elite-card">
+          <div class="elite-pill-wrap">
+            <span class="elite-pill">NUTRITION</span>
+          </div>
+          <div class="elite-img-wrap">
+            <img src="app-meals.png" alt="Meal logging" />
+          </div>
+        </div>
+        <div class="elite-card">
+          <div class="elite-pill-wrap">
+            <span class="elite-pill">HABIT &amp; GOAL TRACKING</span>
+          </div>
+          <div class="elite-img-wrap">
+            <img src="app-plans.png" alt="Daily plans" />
+          </div>
+        </div>
+        <div class="elite-card">
+          <div class="elite-pill-wrap">
+            <span class="elite-pill">ACCOUNTABILITY</span>
+          </div>
+          <div class="elite-img-wrap">
+            <img src="app-progress.png" alt="Progress tracking" />
+          </div>
+        </div>
+      </div>
+
+      <div class="elite-sub">// everything you need. nothing you don't.</div>
+
+      <a href="https://forms.gle/7pLi4NcWVoTSpPxNA" target="_blank" rel="noopener" class="btn btn-outline">join the team &rarr;</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     THE APP
+═══════════════════════════════════════════════════ -->
+<section id="app">
+  <div class="container">
+
+    <div class="sh fade-in">
+      <span class="sh-label"><span class="sl">/</span> the app</span>
+      <div class="sh-line"></div>
+    </div>
+
+    <!-- Hero-style two-column layout -->
+    <div class="app-hero-grid fade-in" style="transition-delay:.06s">
+      <div>
+        <div class="hero-location">// track everything</div>
+        <h2 class="app-hero-headline">
+          TRAIN.<br>
+          EAT.<br>
+          <span class="hl">PROGRESS.</span>
+        </h2>
+        <p class="hero-sub" style="margin-left:0;margin-right:0;margin-bottom:2.2rem;">
+          Personalized workout routines, meal plans, and progress
+          tracking delivered via the app. Everything in one place.
+        </p>
+        <a href="https://forms.gle/7pLi4NcWVoTSpPxNA" target="_blank" rel="noopener" class="btn btn-outline">join the team &rarr;</a>
+      </div>
+      <div class="app-hero-img">
+        <img src="app-screens.png" alt="App overview — 3 phone mockup" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     CTA
+═══════════════════════════════════════════════════ -->
+<section id="cta">
+  <div class="container">
+
+    <div class="sh fade-in">
+      <span class="sh-label"><span class="sl">/</span> ready to start</span>
+      <div class="sh-line"></div>
+    </div>
+
+    <div class="cta-card fade-in" style="transition-delay:.08s">
+      <div>
+        <div class="cta-eyebrow">// limited spots available</div>
+        <div class="cta-headline">
+          TAKE YOUR FIRST<br><span class="cao">STEP TODAY</span>
+        </div>
+        <p class="cta-sub">Built the system around it. You can too.</p>
+      </div>
+      <div class="cta-action">
+        <a href="https://forms.gle/7pLi4NcWVoTSpPxNA" target="_blank" rel="noopener" class="btn btn-filled">apply now &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════ -->
+<footer id="contact">
+  <div class="container">
+
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="flelxetic_logo.png" alt="Flexletic" style="height:50px;width:auto;display:block;margin-bottom:0.5rem;"></div>
+        <div class="footer-tag">// built for men who refuse to stay average.</div>
+      </div>
+
+      <div class="footer-socials">
+        <a href="#" class="soc-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          instagram
+        </a>
+        <a href="#" class="soc-btn" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.69a8.26 8.26 0 004.83 1.55V7.8a4.85 4.85 0 01-1.06-.11z"/>
+          </svg>
+          tiktok
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-copy">© 2025 Flexletic. All rights reserved.</div>
+
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════
+     JS
+═══════════════════════════════════════════════════ -->
+<script>
+  /* hamburger */
+  const hamburger  = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  /* carousel */
+  const track = document.getElementById('carouselTrack');
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    track.scrollBy({ left: -250, behavior: 'smooth' });
+  });
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    track.scrollBy({ left: 250, behavior: 'smooth' });
+  });
+
+  /* scroll fade-in */
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  /* image protection */
+  document.addEventListener('contextmenu', function(e) {
+    if (e.target.tagName === 'IMG') e.preventDefault();
+  });
+  document.addEventListener('dragstart', function(e) {
+    if (e.target.tagName === 'IMG') e.preventDefault();
+  });
+
+  /* nav opacity on scroll */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.style.background = window.scrollY > 50
+      ? 'rgba(17,17,17,0.98)'
+      : 'rgba(17,17,17,0.9)';
+  });
+</script>
+</body>
+</html>
