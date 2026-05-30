@@ -369,11 +369,23 @@
     max-width: 780px;
     margin: 0 auto;
   }
-  .hero-form-wrap iframe {
-    display: block;
-    width: 100%;
-    border-radius: 12px;
-    border: 1px solid rgba(255,102,0,0.2);
+  .hero-apply-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 1.2rem 3.5rem;
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .hero-apply-btn:hover {
+    background: #e55a00;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(255,102,0,0.4);
   }
 
   /* ═══════════════════════════════════
@@ -895,18 +907,10 @@
         1:1 Coaching &nbsp;•&nbsp; $200–500/mo &nbsp;•&nbsp; Application required
       </div>
 
-      <!-- Google Form embed. If the iframe doesn't render, replace the src with your
-           full embed URL: https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true -->
       <div class="hero-form-wrap fade-in" style="transition-delay:.54s">
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSd_placeholder/viewform?embedded=true"
-          width="100%"
-          height="720"
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0">
-          <a href="https://forms.gle/7pLi4NcWVoTSpPxNA" target="_blank" rel="noopener" class="btn btn-filled" style="margin-top:1rem;">Open Application Form ↗</a>
-        </iframe>
+        <a href="https://forms.gle/7pLi4NcWVoTSpPxNA" target="_blank" rel="noopener" class="hero-apply-btn">
+          APPLY NOW &rarr;
+        </a>
       </div>
 
     </div>
