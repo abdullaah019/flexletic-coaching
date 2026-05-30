@@ -534,218 +534,138 @@
   .photo-oval:hover { border-color: var(--border-h); }
 
   /* ═══════════════════════════════════
-     WHAT YOU GET
+     WHAT YOU GET — list format
   ═══════════════════════════════════ */
-  #features { background: var(--bg2); }
+  #features { background: var(--bg); }
 
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+  .feat-list { display: flex; flex-direction: column; }
+
+  .feat-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 2.5rem;
+    padding: 2.2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
+  .feat-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
 
-  .feat-tag {
+  .feat-item-num {
     font-family: 'Anton', sans-serif;
-    font-size: 0.72rem;
+    font-size: 2.4rem;
     color: var(--accent);
-    letter-spacing: 0.16em;
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
+    line-height: 1;
+    min-width: 3.5rem;
+    flex-shrink: 0;
+    padding-top: 0.1rem;
   }
-  .feat-title {
+  .feat-item-title {
     font-family: 'Anton', sans-serif;
-    font-size: 1rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     color: #fff;
-    letter-spacing: 0.04em;
-    margin-bottom: 0.65rem;
-    line-height: 1.2;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 0.35rem;
   }
-  .feat-desc {
-    font-size: 0.85rem;
+  .feat-item-desc {
+    font-size: 0.9rem;
     color: var(--muted);
-    line-height: 1.8;
+    line-height: 1.65;
   }
 
   /* ═══════════════════════════════════
-     ELITE MEMBERSHIP
+     COACH SECTION
   ═══════════════════════════════════ */
-  #elite { background: var(--bg); }
+  #coach { background: var(--bg2); }
 
-  .elite-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .elite-app-grid {
+  .coach-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-bottom: 2.5rem;
-  }
-  .elite-card {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 380px 1fr;
+    gap: 5rem;
     align-items: center;
-    gap: 0.75rem;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.75rem 0.5rem;
-    transition: border-color 0.3s;
   }
-  .elite-card:hover { border-color: var(--border-h); }
-  .elite-pill-wrap { width: 100%; text-align: center; }
-  .elite-pill {
-    display: inline-block;
-    font-family: 'Anton', sans-serif;
-    font-size: 0.66rem;
-    letter-spacing: 0.14em;
-    color: var(--accent);
-    border: 1.5px solid var(--accent);
-    border-radius: 50px;
-    padding: 0.35rem 1rem;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-  .elite-img-wrap { width: 100%; }
-  .elite-img-wrap img {
-    width: 100%;
-    display: block;
-    object-fit: cover;
-    aspect-ratio: 9/16;
-    border-radius: 4px;
-  }
-  .elite-sub {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 2.2rem;
-    text-transform: uppercase;
-  }
-
-  /* ═══════════════════════════════════
-     THE APP
-  ═══════════════════════════════════ */
-  #app { background: var(--bg2); }
-
-  .app-hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    margin-bottom: 4rem;
-  }
-  .app-eyebrow {
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-  }
-  .app-hero-headline {
-    font-family: 'Anton', sans-serif;
-    font-size: clamp(2rem, 4.5vw, 3.2rem);
-    line-height: 1.05;
-    letter-spacing: 0.04em;
-    color: #fff;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-  }
-  .app-hero-headline .hl { color: var(--accent); }
-  .app-hero-img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .app-hero-img img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    display: block;
-  }
-
-  .app-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-  }
-  .app-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
+  .coach-photo {
     position: relative;
     overflow: hidden;
-    transition: border-color 0.3s, transform 0.25s;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    transition: border-color 0.3s;
   }
-  .app-card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.35s ease;
-  }
-  .app-card:hover { border-color: var(--border-h); transform: translateY(-3px); }
-  .app-card:hover::after { transform: scaleX(1); }
-  .app-card img {
+  .coach-photo:hover { border-color: var(--border-h); }
+  .coach-photo img {
     width: 100%;
     display: block;
     object-fit: cover;
-    aspect-ratio: 9/16;
+    aspect-ratio: 3/4;
+    object-position: center top;
   }
-  .app-card-label {
-    font-family: 'Anton', sans-serif;
-    font-size: 0.7rem;
+  .coach-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
     color: var(--accent);
-    letter-spacing: 0.12em;
-    padding: 0.75rem 1rem 0.9rem;
     text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .coach-headline {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+    line-height: 1.06;
+    letter-spacing: 0.03em;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+  }
+  .coach-bio {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.68);
+    line-height: 1.9;
+    margin-bottom: 2.4rem;
   }
 
   /* ═══════════════════════════════════
-     CTA
+     CTA — dark centered
   ═══════════════════════════════════ */
-  #cta { background: var(--accent); }
-
-  .cta-card {
-    padding: 4.5rem 3.5rem;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 2.5rem;
-    align-items: center;
+  #cta {
+    background: var(--bg);
+    border-top: 1px solid rgba(255,102,0,0.12);
+    text-align: center;
+  }
+  .cta-inner {
+    max-width: 700px;
+    margin: 0 auto;
   }
   .cta-eyebrow {
     font-family: 'Inter', sans-serif;
-    font-size: 0.76rem;
+    font-size: 0.78rem;
     font-weight: 700;
-    color: rgba(255,255,255,0.65);
-    letter-spacing: 0.2em;
-    margin-bottom: 0.8rem;
+    letter-spacing: 0.24em;
+    color: var(--accent);
     text-transform: uppercase;
+    margin-bottom: 1.2rem;
   }
   .cta-headline {
     font-family: 'Anton', sans-serif;
-    font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+    font-size: clamp(2.2rem, 5.5vw, 4.2rem);
     color: #fff;
-    line-height: 1.08;
-    letter-spacing: 0.04em;
-    margin-bottom: 0.6rem;
+    line-height: 1.04;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
+    margin-bottom: 1.2rem;
   }
-  .cta-headline .cao { color: rgba(255,255,255,0.85); }
   .cta-sub {
-    font-size: 0.92rem;
-    color: rgba(255,255,255,0.72);
+    font-size: 0.95rem;
+    color: var(--muted);
     line-height: 1.75;
+    margin-bottom: 2.8rem;
   }
-  .cta-action { flex-shrink: 0; }
+  .cta-pricing {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.28);
+    letter-spacing: 0.07em;
+    margin-top: 1.4rem;
+  }
 
   /* ═══════════════════════════════════
      FOOTER
@@ -808,28 +728,19 @@
      RESPONSIVE
   ═══════════════════════════════════ */
   @media (max-width: 960px) {
-    .about-grid { grid-template-columns: 1fr; }
-    .photo-oval { max-width: 220px; order: -1; }
     .how-grid { grid-template-columns: 1fr; }
-    .cta-card { grid-template-columns: 1fr; padding: 2.8rem 2rem; }
+    .coach-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .coach-photo { max-width: 280px; margin: 0 auto; }
     .nav-links, .nav-right .btn { display: none; }
     .hamburger { display: flex; }
-    .app-grid { grid-template-columns: repeat(2, 1fr); }
-    .elite-app-grid { grid-template-columns: repeat(2, 1fr); }
-    .app-hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .app-hero-img { order: -1; }
-    .app-hero-img img { max-height: 380px; width: auto; margin: 0 auto; }
   }
   @media (max-width: 600px) {
     section { padding: 4rem 0; }
     .hero-big-headline { font-size: 1.9rem; }
-    .features-grid { grid-template-columns: 1fr; }
     .footer-inner { flex-direction: column; }
-    .app-grid { grid-template-columns: 1fr 1fr; }
     .testimonials-grid { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 420px) {
-    .app-grid { grid-template-columns: 1fr; }
+    .feat-item { gap: 1.2rem; }
+    .feat-item-num { font-size: 1.8rem; min-width: 2.5rem; }
   }
   </style>
 </head>
@@ -971,59 +882,18 @@
     <div class="how-grid">
       <div class="card fade-in">
         <div class="step-num">01</div>
-        <div class="step-title">Apply for Coaching</div>
-        <p class="step-desc">Submit your application and tell us your goals, schedule, and current challenges. The more detail you give, the better we can build your program.</p>
+        <div class="step-title">Apply</div>
+        <p class="step-desc">Fill out the short application. Tell me your goals and schedule. Takes 5 minutes.</p>
       </div>
       <div class="card fade-in" style="transition-delay:.12s">
         <div class="step-num">02</div>
-        <div class="step-title">Get Your Custom Plan</div>
-        <p class="step-desc">You receive a personalized training system, nutrition strategy, and full coaching inside the app — built specifically for you, not a template.</p>
+        <div class="step-title">We Talk</div>
+        <p class="step-desc">If you're a fit, we jump on a call. No pressure, just clarity. I'll tell you exactly what working together looks like.</p>
       </div>
       <div class="card fade-in" style="transition-delay:.24s">
         <div class="step-num">03</div>
-        <div class="step-title">Execute With Guidance</div>
-        <p class="step-desc">Weekly check-ins, progress tracking, and adjustments to ensure consistent results. No guessing — just execution with a coach in your corner.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     ABOUT ME
-══════════════════════════════════════════ -->
-<section id="about">
-  <div class="container">
-
-    <div class="sh fade-in">
-      <span class="sh-label"><span class="sl">/</span> About Me</span>
-      <div class="sh-line"></div>
-    </div>
-
-    <div class="about-grid">
-      <div class="fade-in" style="transition-delay:.08s">
-        <div class="about-name">ABDULLAAH <span class="ao">YASEEN</span></div>
-        <div class="about-role">Fitness Coach &amp; Founder, Flexletic</div>
-
-        <p class="about-bio">I'm a Fitness Coach and former college athlete who knows what it takes to go from skinny and unsure in the gym to building muscle, strength, and confidence that lasts. My mission is to help busy professionals and everyday men cut through the confusion, get in shape, and stay consistent without wasting years guessing what works.</p>
-        <p class="about-bio">With a background in IT and cybersecurity, I understand the demands of long hours behind a desk. That's why my coaching focuses on efficient training, nutrition made simple, and discipline that fits into real life.</p>
-
-        <ul class="about-bullets">
-          <li>Founder of Builtwithseen™</li>
-          <li>Ex-College Football Player — Lake Erie College, Defensive Back</li>
-          <li>10+ Years Training Experience</li>
-          <li>Certified in Nutrition and Personal Training</li>
-          <li>Specialized in Muscle Building &amp; Fat Loss for Busy Professionals</li>
-          <li>Background in Cybersecurity &amp; Tech — I coach from real-life balance</li>
-        </ul>
-      </div>
-
-      <div class="fade-in" style="transition-delay:.22s">
-        <div class="photo-oval img-protect" style="position:relative;">
-          <img src="coach.jpg" alt="Abdullaah Yaseen — Fitness Coach" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
-          <div class="img-protect-overlay"></div>
-        </div>
+        <div class="step-title">Lock In</div>
+        <p class="step-desc">You commit, I build your plan. We start within 48 hours. No waiting, no fluff — just work.</p>
       </div>
     </div>
 
@@ -1042,31 +912,41 @@
       <div class="sh-line"></div>
     </div>
 
-    <div class="features-grid">
-      <div class="card fade-in" style="transition-delay:.05s">
-        <div class="feat-tag">01 — Training</div>
-        <div class="feat-title">Custom Training Plan</div>
-        <p class="feat-desc">A fully tailored training program designed for your goals, fitness level, and available time — whether at home or in the gym.</p>
+    <div class="feat-list">
+      <div class="feat-item fade-in" style="transition-delay:.05s">
+        <div class="feat-item-num">01</div>
+        <div class="feat-item-body">
+          <div class="feat-item-title">CUSTOM TRAINING PLAN</div>
+          <div class="feat-item-desc">Built around your schedule. 3–5 days a week, no gym required.</div>
+        </div>
       </div>
-      <div class="card fade-in" style="transition-delay:.1s">
-        <div class="feat-tag">02 — Nutrition</div>
-        <div class="feat-title">Custom Meal Plan</div>
-        <p class="feat-desc">No more guessing what to eat. Your meal plan is built around your goals, food preferences, and lifestyle so it's easy to stick with.</p>
+      <div class="feat-item fade-in" style="transition-delay:.1s">
+        <div class="feat-item-num">02</div>
+        <div class="feat-item-body">
+          <div class="feat-item-title">NUTRITION BLUEPRINT</div>
+          <div class="feat-item-desc">No guessing. A plan you can actually follow around a busy life.</div>
+        </div>
       </div>
-      <div class="card fade-in" style="transition-delay:.15s">
-        <div class="feat-tag">03 — Coaching</div>
-        <div class="feat-title">1:1 Coaching</div>
-        <p class="feat-desc">Direct access to me and my team for accountability and personalized strategies to overcome challenges and maximize results.</p>
+      <div class="feat-item fade-in" style="transition-delay:.15s">
+        <div class="feat-item-num">03</div>
+        <div class="feat-item-body">
+          <div class="feat-item-title">WEEKLY CHECK-INS</div>
+          <div class="feat-item-desc">Direct access to me. We adjust, we track, we push.</div>
+        </div>
       </div>
-      <div class="card fade-in" style="transition-delay:.2s">
-        <div class="feat-tag">04 — Tracking</div>
-        <div class="feat-title">Check-ins &amp; Adjustments</div>
-        <p class="feat-desc">Your plan evolves as you do. I'll track your progress and make necessary tweaks to keep you moving forward.</p>
+      <div class="feat-item fade-in" style="transition-delay:.2s">
+        <div class="feat-item-num">04</div>
+        <div class="feat-item-body">
+          <div class="feat-item-title">ACCOUNTABILITY</div>
+          <div class="feat-item-desc">I treat you like an athlete. You show up, I show up.</div>
+        </div>
       </div>
-      <div class="card fade-in" style="transition-delay:.25s">
-        <div class="feat-tag">05 — App</div>
-        <div class="feat-title">Training App</div>
-        <p class="feat-desc">Track your workouts, nutrition, and progress all in one place for seamless execution and next-level results.</p>
+      <div class="feat-item fade-in" style="transition-delay:.25s">
+        <div class="feat-item-num">05</div>
+        <div class="feat-item-body">
+          <div class="feat-item-title">PROGRESS TRACKING</div>
+          <div class="feat-item-desc">Monthly assessments, form checks, and strategy calls.</div>
+        </div>
       </div>
     </div>
 
@@ -1075,71 +955,26 @@
 
 
 <!-- ══════════════════════════════════════════
-     ELITE MEMBERSHIP
+     COACH
 ══════════════════════════════════════════ -->
-<section id="elite">
+<section id="coach">
   <div class="container">
 
-    <div class="sh fade-in">
-      <span class="sh-label"><span class="sl">/</span> Elite Membership</span>
-      <div class="sh-line"></div>
-    </div>
+    <div class="coach-grid">
 
-    <div class="elite-inner fade-in" style="transition-delay:.08s">
-      <div class="elite-app-grid">
-        <div class="elite-card">
-          <div class="elite-pill-wrap"><span class="elite-pill">WORKOUT</span></div>
-          <div class="elite-img-wrap"><img src="app-workout.png" alt="Workout tracking" /></div>
-        </div>
-        <div class="elite-card">
-          <div class="elite-pill-wrap"><span class="elite-pill">NUTRITION</span></div>
-          <div class="elite-img-wrap"><img src="app-meals.png" alt="Meal logging" /></div>
-        </div>
-        <div class="elite-card">
-          <div class="elite-pill-wrap"><span class="elite-pill">HABIT &amp; GOAL TRACKING</span></div>
-          <div class="elite-img-wrap"><img src="app-plans.png" alt="Daily plans" /></div>
-        </div>
-        <div class="elite-card">
-          <div class="elite-pill-wrap"><span class="elite-pill">ACCOUNTABILITY</span></div>
-          <div class="elite-img-wrap"><img src="app-progress.png" alt="Progress tracking" /></div>
-        </div>
+      <div class="coach-photo img-protect fade-in">
+        <img src="coach.jpg" alt="Abdullaah Yaseen — Fitness Coach" />
+        <div class="img-protect-overlay"></div>
       </div>
 
-      <div class="elite-sub">Everything you need. Nothing you don't.</div>
-      <a href="https://forms.gle/7pLi4NcWVoTSpPxNA" target="_blank" rel="noopener" class="btn btn-outline">Join the Team &rarr;</a>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     THE APP
-══════════════════════════════════════════ -->
-<section id="app">
-  <div class="container">
-
-    <div class="sh fade-in">
-      <span class="sh-label"><span class="sl">/</span> The App</span>
-      <div class="sh-line"></div>
-    </div>
-
-    <div class="app-hero-grid fade-in" style="transition-delay:.06s">
-      <div>
-        <div class="app-eyebrow">Track Everything</div>
-        <h2 class="app-hero-headline">
-          TRAIN.<br>EAT.<br><span class="hl">PROGRESS.</span>
-        </h2>
-        <p class="hero-sub" style="margin-left:0;margin-right:0;margin-bottom:2.2rem;">
-          Personalized workout routines, meal plans, and progress tracking delivered via the app. Everything in one place.
-        </p>
-        <a href="https://forms.gle/7pLi4NcWVoTSpPxNA" target="_blank" rel="noopener" class="btn btn-outline">Join the Team &rarr;</a>
+      <div class="fade-in" style="transition-delay:.12s">
+        <div class="coach-eyebrow">/ Your Coach</div>
+        <h2 class="coach-headline">FORMER COLLEGE DB. NOW I HELP BUSY GUYS BUILD THE BODY THEY KEEP PUTTING OFF.</h2>
+        <p class="coach-bio">I played football at the collegiate level as a defensive back. When I left the game, the gym became my discipline. I've been coaching professionals for years — guys with real jobs, real schedules, and real goals. I don't sell programs. I build athletes.</p>
+        <a href="https://forms.gle/7pLi4NcWVoTSpPxNA" target="_blank" rel="noopener" class="hero-apply-btn">APPLY NOW &rarr;</a>
       </div>
-      <div class="app-hero-img">
-        <img src="app-screens.png" alt="App overview — 3 phone mockup" />
-      </div>
-    </div>
 
+    </div>
   </div>
 </section>
 
@@ -1149,15 +984,12 @@
 ══════════════════════════════════════════ -->
 <section id="cta">
   <div class="container">
-    <div class="cta-card fade-in">
-      <div>
-        <div class="cta-eyebrow">Limited Spots Available</div>
-        <div class="cta-headline">TAKE YOUR FIRST<br><span class="cao">STEP TODAY</span></div>
-        <p class="cta-sub">No more excuses. The only thing left is the decision.</p>
-      </div>
-      <div class="cta-action">
-        <a href="https://forms.gle/7pLi4NcWVoTSpPxNA" target="_blank" rel="noopener" class="btn btn-white">Apply Now &rarr;</a>
-      </div>
+    <div class="cta-inner fade-in">
+      <div class="cta-eyebrow">Limited Spots Available</div>
+      <h2 class="cta-headline">READY TO STOP MAKING EXCUSES?</h2>
+      <p class="cta-sub">Applications are reviewed manually. Only serious guys get a response.</p>
+      <a href="https://forms.gle/7pLi4NcWVoTSpPxNA" target="_blank" rel="noopener" class="hero-apply-btn">APPLY TO WORK WITH ME &rarr;</a>
+      <div class="cta-pricing">1:1 Coaching &nbsp;•&nbsp; $200–500/mo &nbsp;•&nbsp; Spots limited</div>
     </div>
   </div>
 </section>
